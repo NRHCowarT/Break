@@ -10,31 +10,31 @@
 	<string>Break</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C11785D464FBFE7DC79E7F85E66ECC5AFDD0F9B7</key>
-		<string>https://github.com/NRHCowarT/ios-apps.git</string>
+		<key>162D3C334395A57264B4A3B136A58DF9605388A2</key>
+		<string>https://github.com/NRHCowarT/Break.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Break/Break.xcodeproj</string>
+	<string>Break.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C11785D464FBFE7DC79E7F85E66ECC5AFDD0F9B7</key>
-		<string>../../..</string>
+		<key>162D3C334395A57264B4A3B136A58DF9605388A2</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/NRHCowarT/ios-apps.git</string>
+	<string>https://github.com/NRHCowarT/Break.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C11785D464FBFE7DC79E7F85E66ECC5AFDD0F9B7</string>
+	<string>162D3C334395A57264B4A3B136A58DF9605388A2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C11785D464FBFE7DC79E7F85E66ECC5AFDD0F9B7</string>
+			<string>162D3C334395A57264B4A3B136A58DF9605388A2</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ios-apps</string>
+			<string>Break</string>
 		</dict>
 	</array>
 </dict>
