@@ -149,7 +149,14 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
                 brickBehavior.removeItem(brick)
                 brick.removeFromSuperview()
                 
-                score += 100
+//                var currentLevel: Int = GameData.mainData().currentLevel
+//                var levelDetails: [String: AnyObject] = GameData.mainData().allLevelDetails[currentLevel]
+//                var brickColor = levelDetails["point"] as Int
+
+                
+                var brickValue = GameData.mainData().allLevelDetails[GameData.mainData().currentLevel]["point"]as Int
+
+                score += brickValue
                 
                 GameData.mainData().adjustValue(1, forKey: "bricksBusted")
 
@@ -253,7 +260,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
                 
                 var brick = UIView(frame: CGRectMake(x, y, width, height))
                 
-                brick.backgroundColor = UIColor.blackColor()
+//                var currentLevel: Int = GameData.mainData().currentLevel
+//                var levelDetails: [String: AnyObject] = GameData.mainData().allLevelDetails[currentLevel]
+//                var brickColor = levelDetails["color"] as UIColor
+                
+                var brickColor = GameData.mainData().allLevelDetails[GameData.mainData().currentLevel]["color"]as UIColor
+                brick.backgroundColor = brickColor
                 brick.layer.cornerRadius = 3
                 
                 gameView.addSubview(brick)
