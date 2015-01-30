@@ -8,6 +8,17 @@
 
 import UIKit
 
+// Homework
+
+// - don't reset lives to 3 if going to new level
+// - make the ball a UIImageView and find an image to set it as 
+//                      change ball behavior to UIImageView and any where else ball is a UIView
+
+// - add at least 10 more levels
+// - add labels in storyboard, that will be hidden during gameplay
+//  these will show up at the end of the level
+//  they will have the score, lives lost, bricks broken and levels passed
+
 class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
     @IBOutlet weak var gameView: UIView!
@@ -15,6 +26,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    
+    @IBOutlet weak var scoreTotalLabel: UILabel!
+    @IBOutlet weak var levelsPassedLabel: UILabel!
+    @IBOutlet weak var livesLostLabel: UILabel!
+    @IBOutlet weak var bricksBrokenLabel: UILabel!
     
     var score: Int = 0 {
         
@@ -75,6 +91,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         paddleBehavior.density = 1000000
         
+        paddleBehavior.allowsRotation = false
+        
 
     
         // Do any additional setup after loading the view, typically from a nib.
@@ -86,9 +104,28 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         titleLabel.hidden = true
         playButton.hidden = true
+        bricksBrokenLabel.hidden = true
+        livesLostLabel.hidden = true
+        levelsPassedLabel.hidden = true
+        scoreTotalLabel.hidden = true
         
-        score = 0
-        livesView.livesLeft = 3
+        
+        
+//        if GameData.mainData().currentLevel == 0 {
+//        ^^^^^ this line is same as the next 2 lines below.
+
+        if GameData.mainData().currentLevel > 0 {
+            
+        } else {
+            
+            score = 0
+            livesView.livesLeft = 3
+            
+        }
+        
+       
+        
+        
         
         createPaddle()
         createBall()
@@ -98,7 +135,17 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     func endGame(gameOver: Bool)  {
         
+        if gameOver {
+            
+            GameData.mainData().currentLevel = 0
+            
+            
+        
+        }
+        
         GameData.mainData().currentLevel =  gameOver ? 0 : ++GameData.mainData().currentLevel
+        
+//        GameData.mainData().currentLevel = gameOver ? 0 :
         
         println(GameData.mainData().currentLevel)
         
@@ -108,6 +155,21 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         titleLabel.hidden = false
         playButton.hidden = false
+        bricksBrokenLabel.hidden = false
+        livesLostLabel.hidden = false
+        levelsPassedLabel.hidden = false
+        scoreTotalLabel.hidden = false
+        
+        var livesLost = GameData.mainData().currentGame!["livesLost"]! as Int
+        var bricksBroken = GameData.mainData().currentGame!["bricksBusted"]! as Int
+        
+        
+        scoreTotalLabel.text = "Score Total: \(score)"
+        livesLostLabel.text  = "Lives Lost: \(livesLost)"
+        bricksBrokenLabel.text = "Bricks Broken: \(bricksBroken)"
+        levelsPassedLabel.text = "Level Passed: \(GameData.mainData().currentLevel)"
+        
+        
         
 //        remove paddle
         
@@ -117,7 +179,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
 //        remove ball
         
-        for ball in ballBehavior.items as [UIView] {
+        for ball in ballBehavior.items as [UIImageView] {
 //            ask Joe question about this line ^^^
             ball.removeFromSuperview()
             collisionBehavior.removeItem(ball)
@@ -153,7 +215,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
                 
                 GameData.mainData().adjustValue(1, forKey: "bricksBusted")
 
-                
                 var pointsLabel = UILabel(frame: brick.frame)
                 pointsLabel.text = "+100"
                 pointsLabel.textAlignment = .Center
@@ -175,6 +236,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         if brickBehavior.items.count == 0 {
             
             endGame(false)
+            
+            
         }
     }
     
@@ -184,7 +247,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
             if identifier as String == "lava" {
             
-                var ball = item as UIView
+                var ball = item as UIImageView
                 
                 collisionBehavior.removeItem(ball)
                 ballBehavior.removeItem(ball)
@@ -211,13 +274,16 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     func createBall(){
 
-        var ball = UIView(frame: CGRectMake(0, 0, 20, 20))
+        var ball = UIImageView(frame: CGRectMake(0, 0, 20, 20))
+        
+        ball.image = UIImage(named: "SadFace")
 
         ball.center.x = paddle.center.x
         ball.center.y = paddle.center.y - 40
         
         ball.backgroundColor = UIColor.blackColor()
         ball.layer.cornerRadius = 10
+        ball.layer.masksToBounds = true
         
         gameView.addSubview(ball)
         

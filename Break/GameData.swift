@@ -8,7 +8,7 @@
 
 import UIKit
 
-let _mainDate: GameData = { GameData() }()
+let _mainData: GameData = { GameData() }()
 
 class GameData: NSObject {
     
@@ -38,18 +38,27 @@ class GameData: NSObject {
     var allLevels = [
     
         (4,1),
+        (5,2),
         (6,2),
+        (7,2),
         (7,3),
-        (8,4)
-    
-    
+        (8,3),
+        (9,3),
+        (7,4),
+        (8,4),
+        (9,4),
+        (10,4),
+        (11,4),
+        (12,4),
+        (12,5),
+        
     ]
     
     var currentLevel = 0
    
     class func mainData() -> GameData  {
         
-        return _mainDate
+        return _mainData
     
     }
     
